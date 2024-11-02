@@ -1235,5 +1235,5 @@ msgid "© Copyright the author, unless otherwise credited"
 msgstr "© Авторське право належить автору, якщо не зазначено інше"
 
 msgid "© Copyright {author}, unless otherwise credited"
-msgstr "© Авторське право {author}, якщо інше не зараховано"
+msgstr "© Авторське право {author}, якщо не зазначено інше"
 
