@@ -1,0 +1,110 @@
+.header-site-brand {
+  @include font-size($h5-font-size);
+
+  --betty-site-brand-bg-color: #{$white};
+  --betty-site-brand-color: #{$black};
+
+  box-shadow: none;
+  display: inline-block;
+  height: 1.5em;
+  overflow: hidden;
+
+  // @todo RTL support
+  padding-right: 5px;
+  text-wrap: nowrap;
+
+  &:focus {
+    --betty-site-brand-bg-color: #{$focus};
+
+    outline: none;
+
+    .header-site-title {
+      @include text-focus;
+
+      background-color: var(--betty-site-brand-bg-color);
+    }
+  }
+
+  .header-site-title {
+    display: inline-block;
+    height: 1.5em;
+    overflow: hidden;
+
+  // @todo RTL support
+    padding-left: 5px;
+    width: calc(100% - 1.5em);
+
+    .header-site-title-text {
+      // @todo RTL support
+      background: linear-gradient(270deg, var(--betty-site-brand-bg-color), var(--betty-site-brand-color) 0.5lh);
+      background-clip: text;
+      color: transparent !important;
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+
+  img {
+    height: 1.5em;
+    vertical-align: top;
+    width: 1.5em;
+  }
+}
+
+.header-entry-point {
+  @include button;
+  @include font-size($h5-font-size);
+
+  --bs-btn-bg: #{$white};
+  --bs-btn-border-color: #{$white};
+
+  height: 1lh;
+  text-indent: -999rem;
+  width: 1lh;
+
+  &:hover {
+    --bs-btn-hover-bg: #{$primary-700};
+    --bs-btn-hover-border-color: #{$primary-700};
+    --bs-btn-hover-color: #{$white};
+  }
+}
+
+.header-nav-link.active a {
+  box-shadow: 0 5px $black;
+}
+
+#header-entry-point-primary {
+  background-image: #{icon-primary-navigation($black)};
+
+  &:hover {
+    background-image: #{icon-primary-navigation($white)};
+  }
+}
+
+#header-entry-point-search {
+  background-image: #{icon-search($black)};
+
+  &:hover {
+    background-image: #{icon-search($white)};
+  }
+}
+
+#header-entry-point-language {
+  background-image: #{icon-language($black)};
+
+  &:hover {
+    background-image: #{icon-language($white)};
+  }
+}
+
+@include media-breakpoint-up(md) {
+  #nav-primary {
+    display: block;
+  }
+
+  .nav-primary-links {
+    display: flex;
+    flex-direction: row;
+  }
+}

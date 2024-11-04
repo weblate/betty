@@ -1,0 +1,20 @@
+.accordion-button {
+  @extend .h6;
+
+  margin-bottom: 0;
+
+  &:focus {
+    background-color: $focus;
+    box-shadow: 0 0 $focus, 0 2px $focus-contrast;
+    color: $focus-contrast !important;
+    text-decoration-color: $focus-contrast;
+  }
+}
+
+.accordion-body {
+  @extend .mb-3;
+
+  // @todo This does not support RTL scripts.
+  border-right: $border-width solid $black;
+  margin-right: calc((1.5em - $border-width) / 2);
+}

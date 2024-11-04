@@ -1,0 +1,30 @@
+@mixin text-focus {
+    background-color: $focus;
+    box-shadow: 0 0 $focus, 0 2px $focus-contrast;
+    color: $focus-contrast;
+    text-decoration-color: $focus-contrast;
+    outline: none;
+}
+
+a {
+  box-shadow: 0 2px var(--betty-link-underline-color);
+  text-decoration: none;
+
+  &:focus:not(.no-text-focus) {
+    @include text-focus;
+  }
+
+  &:hover {
+    box-shadow: 0 2px var(--betty-link-hover-underline-color);
+  }
+}
+
+::selection {
+  background-color: $selection;
+  color: $selection-contrast !important;
+}
+
+.private {
+  cursor: help;
+  text-decoration: dotted underline;
+}

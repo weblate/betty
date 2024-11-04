@@ -10,6 +10,12 @@ const typescriptFiles = [
 ]
 
 export default [
+    {
+        ignores: [
+            "raspberry-mint-dev/build",
+        ],
+    },
+
     // Webpack configuration files.
     {
         files: [

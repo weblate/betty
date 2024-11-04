@@ -1,0 +1,9 @@
+.btn-close {
+  border: 3px solid $white;
+
+  &:focus {
+    background-color: $focus;
+    border-color: $focus-contrast;
+    color: $focus-contrast;
+  }
+}

@@ -9,7 +9,7 @@ ruff check --fix .
 ruff format .
 
 # Fix CSS code style violations.
-./node_modules/.bin/stylelint --fix "./betty/**/*.css" "./betty/**/*.scss"
+./node_modules/.bin/stylelint --fix  "./betty/**/*.css" "./betty/**/*.scss" "./raspberry-mint-dev/**/*.css" "./raspberry-mint-dev/**/*.scss"
 
 # Fix JS code style violations.
-./node_modules/.bin/eslint --fix -c ./eslint.config.js ./betty
+./node_modules/.bin/eslint --fix -c ./eslint.config.js ./betty ./raspberry-mint-dev

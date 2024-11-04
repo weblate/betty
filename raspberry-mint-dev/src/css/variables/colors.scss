@@ -1,0 +1,248 @@
+@use "sass:color";
+
+/** Base colors */
+$mint: #3eb489;
+$raspberry: #b3446c;
+$orange: #ffbd22;
+$gray: #808080;
+
+/* Mint shades */
+$mint-100: color.mix(white, $mint, 80%);
+$mint-200: color.mix(white, $mint, 60%);
+$mint-300: color.mix(white, $mint, 40%);
+$mint-400: color.mix(white, $mint, 20%);
+$mint-500: $mint;
+$mint-600: color.mix(black, $mint, 20%);
+$mint-700: color.mix(black, $mint, 40%);
+$mint-800: color.mix(black, $mint, 60%);
+$mint-900: color.mix(black, $mint, 80%);
+
+/* Raspberry shades */
+$raspberry-100: color.mix(white, $raspberry, 80%);
+$raspberry-200: color.mix(white, $raspberry, 60%);
+$raspberry-300: color.mix(white, $raspberry, 40%);
+$raspberry-400: color.mix(white, $raspberry, 20%);
+$raspberry-500: $raspberry;
+$raspberry-600: color.mix(black, $raspberry, 20%);
+$raspberry-700: color.mix(black, $raspberry, 40%);
+$raspberry-800: color.mix(black, $raspberry, 60%);
+$raspberry-900: color.mix(black, $raspberry, 80%);
+
+/* Orange shades */
+$orange-100: color.mix(white, $orange, 80%);
+$orange-200: color.mix(white, $orange, 60%);
+$orange-300: color.mix(white, $orange, 40%);
+$orange-400: color.mix(white, $orange, 20%);
+$orange-500: $orange;
+$orange-600: color.mix(black, $orange, 20%);
+$orange-700: color.mix(black, $orange, 40%);
+$orange-800: color.mix(black, $orange, 60%);
+$orange-900: color.mix(black, $orange, 80%);
+
+/* Gray shades */
+$gray-100: color.mix(white, $gray, 80%);
+$gray-200: color.mix(white, $gray, 60%);
+$gray-300: color.mix(white, $gray, 40%);
+$gray-400: color.mix(white, $gray, 20%);
+$gray-500: $gray;
+$gray-600: color.mix(black, $gray, 20%);
+$gray-700: color.mix(black, $gray, 40%);
+$gray-800: color.mix(black, $gray, 60%);
+$gray-900: color.mix(black, $gray, 80%);
+
+/* Black and white */
+$black: #000;
+$white: #fff;
+
+/* Primary color shades (these are configurable) */
+$primary: $raspberry;
+$primary-100: $raspberry-100;
+$primary-200: $raspberry-200;
+$primary-300: $raspberry-300;
+$primary-400: $raspberry-400;
+$primary-500: $raspberry-500;
+$primary-600: $raspberry-600;
+$primary-700: $raspberry-700;
+$primary-800: $raspberry-800;
+$primary-900: $raspberry-900;
+
+/* Secondary color shades (these are configurable) */
+$secondary: $mint;
+$secondary-100: $mint-100;
+$secondary-200: $mint-200;
+$secondary-300: $mint-300;
+$secondary-400: $mint-400;
+$secondary-500: $mint-500;
+$secondary-600: $mint-600;
+$secondary-700: $mint-700;
+$secondary-800: $mint-800;
+$secondary-900: $mint-900;
+
+/* Tertiary color shades (these are configurable) */
+$tertiary: $orange;
+$tertiary-100: $orange-100;
+$tertiary-200: $orange-200;
+$tertiary-300: $orange-300;
+$tertiary-400: $orange-400;
+$tertiary-500: $orange-500;
+$tertiary-600: $orange-600;
+$tertiary-700: $orange-700;
+$tertiary-800: $orange-800;
+$tertiary-900: $orange-900;
+
+/* Color modes */
+
+// Single definitions and overrides.
+$focus: $tertiary-300;
+$focus-contrast: $black;
+$selection: $tertiary-100;
+$selection-contrast: $black;
+$accordion-icon-color: $black;
+$accordion-icon-active-color: $black;
+
+// $body-bg
+$body-bg: $white;
+$body-bg-dark: $black;
+$body-bg-light-primary: $primary-100;
+$body-bg-dark-primary: $primary-900;
+$body-bg-light-secondary: $secondary-100;
+$body-bg-dark-secondary: $secondary-900;
+
+// $body-color
+$body-color: $black;
+$body-color-dark: $white;
+
+// $link-color
+$link-color: $secondary-800;
+$link-color-dark: $secondary-200;
+$link-color-light-primary: $primary-800;
+$link-color-dark-primary: $primary-200;
+$link-color-light-secondary: $secondary-800;
+$link-color-dark-secondary: $secondary-200;
+
+// $link-hover-color
+$link-hover-color: $secondary-900;
+$link-hover-color-dark: $secondary-100;
+$link-hover-color-light-primary: $primary-900;
+$link-hover-color-dark-primary: $primary-100;
+$link-hover-color-light-secondary: $secondary-900;
+$link-hover-color-dark-secondary: $secondary-100;
+
+// $link-underline-color
+$link-underline-color: $secondary-600;
+$link-underline-color-dark: $secondary-400;
+$link-underline-color-light-primary: $primary-600;
+$link-underline-color-dark-primary: $primary-400;
+$link-underline-color-light-secondary: $secondary-600;
+$link-underline-color-dark-secondary: $secondary-400;
+
+// $link-hover-underline-color
+$link-hover-underline-color: $secondary-700;
+$link-hover-underline-color-dark: $secondary-300;
+$link-hover-underline-color-light-primary: $primary-700;
+$link-hover-underline-color-dark-primary: $primary-300;
+$link-hover-underline-color-light-secondary: $secondary-700;
+$link-hover-underline-color-dark-secondary: $secondary-300;
+
+
+// Betty CSS variables
+body {
+  --betty-link-underline-color: #{$link-underline-color};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color};
+}
+
+// $card-bg
+$card-bg: $gray-100;
+$card-bg-dark: $white;
+
+// $card-color
+$card-color: $black;
+$card-color-dark: $white;
+
+@mixin common {
+  --bs-card-bg: #{$white};
+}
+
+@mixin light {
+  @include common;
+
+  --bs-body-color: #{$body-color};
+  --bs-body-color-rgb: #{to-rgb($body-color)};
+  --bs-card-color: #{$card-color} !important;
+
+  color: #{$card-color} !important;
+}
+
+@mixin dark {
+  @include common;
+
+  --betty-link-underline-color: #{$link-underline-color-dark};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color-dark};
+  --bs-body-color: #{$body-color-dark};
+  --bs-body-color-rgb: #{to-rgb($body-color-dark)};
+  --bs-card-color: #{$card-color-dark} !important;
+
+  color: #{$card-color-dark} !important;
+}
+
+[data-bs-theme="dark"] {
+  @include dark;
+
+  background-color: #{$body-bg-dark} !important;
+}
+
+[data-bs-theme="light-primary"] {
+  @include light;
+
+  --betty-link-underline-color: #{$link-underline-color-light-primary};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color-light-primary};
+  --bs-link-color: #{$link-color-light-primary};
+  --bs-link-color-rgb: #{to-rgb($link-color-light-primary)};
+  --bs-link-hover-color: #{$link-hover-color-light-primary};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color-light-primary)};
+
+  background-color: #{$body-bg-light-primary} !important;
+  color-scheme: light;
+}
+
+[data-bs-theme="dark-primary"] {
+  @include dark;
+
+  --betty-link-underline-color: #{$link-underline-color-dark-primary};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color-dark-primary};
+  --bs-link-color: #{$link-color-dark-primary};
+  --bs-link-color-rgb: #{to-rgb($link-color-dark-primary)};
+  --bs-link-hover-color: #{$link-hover-color-dark-primary};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color-dark-primary)};
+
+  background-color: #{$body-bg-dark-primary} !important;
+  color-scheme: dark;
+}
+
+[data-bs-theme="light-secondary"] {
+  @include light;
+
+  --betty-link-underline-color: #{$link-underline-color-light-secondary};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color-light-secondary};
+  --bs-link-color: #{$link-color-light-secondary};
+  --bs-link-color-rgb: #{to-rgb($link-color-light-secondary)};
+  --bs-link-hover-color: #{$link-hover-color-light-secondary};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color-light-secondary)};
+
+  background-color: #{$body-bg-light-secondary} !important;
+  color-scheme: light;
+}
+
+[data-bs-theme="dark-secondary"] {
+  @include dark;
+
+  --betty-link-underline-color: #{$link-underline-color-dark-secondary};
+  --betty-link-hover-underline-color: #{$link-hover-underline-color-dark-secondary};
+  --bs-link-color: #{$link-color-dark-secondary};
+  --bs-link-color-rgb: #{to-rgb($link-color-dark-secondary)};
+  --bs-link-hover-color: #{$link-hover-color-dark-secondary};
+  --bs-link-hover-color-rgb: #{to-rgb($link-hover-color-dark-secondary)};
+
+  background-color: #{$body-bg-dark-secondary} !important;
+  color-scheme: dark;
+}

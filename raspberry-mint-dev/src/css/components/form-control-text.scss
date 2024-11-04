@@ -1,0 +1,17 @@
+.form-control-text {
+  &:focus-within {
+    .form-label {
+      background-color: $focus;
+      box-shadow: 0 0 $focus, 0 2px $focus-contrast;
+      color: $focus-contrast;
+      text-decoration-color: $focus-contrast;
+      outline: none;
+
+    }
+
+    .form-control {
+      background-color: $focus;
+      border-color: $focus-contrast;
+    }
+  }
+}

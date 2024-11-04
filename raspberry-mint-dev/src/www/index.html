@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Raspberry Mint development environment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./images/betty-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div class="visually-hidden-focusable h4 text-center my-3">
+    <a href="#main-content">Skip to main content</a>
+</div>
+<div class="container">
+    <div>
+        <nav class="d-flex my-1 w-100">
+            <a class="flex-grow-1 header-site-brand no-text-focus" href="#" title="Go to the front page"><img
+                    src="./images/betty-192x192.png" alt="The Betty logo"><span class="header-site-title"><span
+                    class="header-site-title-text">Betty's new theme: Raspberry Mint</span></span></a>
+            <button id="header-entry-point-language" class="btn header-entry-point" type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#nav-language"
+                    aria-controls="nav-language" aria-expanded="false" aria-label="Toggle translations">
+                Translations
+            </button>
+            <button id="header-entry-point-search" class="btn header-entry-point" type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#nav-search"
+                    aria-controls="nav-search" aria-expanded="false" aria-label="Toggle search">
+                Search
+            </button>
+            <button id="header-entry-point-primary" class="btn d-block d-md-none header-entry-point" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#nav-primary"
+                    aria-controls="nav-primary" aria-expanded="false" aria-label="Toggle primary navigation">
+                Menu
+            </button>
+        </nav>
+    </div>
+</div>
+<nav id="nav-primary" class="collapse container mt-md-1">
+    <ul class="gap-md-1 nav-primary-links list-unstyled mb-md-1 text-center">
+        <li class="active h6 header-nav-link">
+            <a href="#">People</a>
+        </li>
+        <li class="h6 header-nav-link">
+            <a href="#">Timeline</a>
+        </li>
+        <li class="h6 header-nav-link">
+            <a href="#">Places</a>
+        </li>
+        <li class="h6 header-nav-link">
+            <a href="#">Sources</a>
+        </li>
+    </ul>
+</nav>
+<div id="nav-language" class="modal">
+    <div class="modal-dialog modal-sm modal-fullscreen-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Language</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <nav class="modal-body">
+                <ul class="list-unstyled text-center">
+                    <li class="active h6 header-nav-link">
+                        <a href="#">English</a>
+                    </li>
+                    <li class="h6 header-nav-link">
+                        <a href="#">français</a>
+                    </li>
+                    <li class="h6 header-nav-link">
+                        <a href="#">Nederlands</a>
+                    </li>
+                    <li class="h6 header-nav-link">
+                        <a href="#">українська</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="nav-search" class="modal">
+    <div class="modal-dialog modal-lg modal-fullscreen-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-control-text">
+                        <label for="search-query" class="form-label">Keywords</label>
+                        <input type="text" class="form-control" id="search-query">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-content"></div>
+<div class="py-5" data-bs-theme="dark-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12 col-lg 6">
+                <h1><span class="h5">Welcome to Betty's new theme</span><span
+                        class="visually-hidden">:</span> <i
+                        class="d-block display-1">Raspberry Mint</i>
+                </h1>
+            </div>
+            <div class="col col-lg-4 text-center text-lg-start">
+                <div class="card mb-1" data-bs-theme="light-primary">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Construction scheduled until
+                            <span class="h1 d-block">Spring 2025</span>
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    <a href="https://github.com/bartfeenstra/betty/pull/2192">Follow the development</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p-3 mb-5" data-bs-theme="light-primary">
+    <p class="text-center">
+        Try it out now: <code>pip install git+https://github.com/bartfeenstra/betty.git@raspberry-mint</code>
+    </p>
+</div>
+<div class="container">
+    <section id="colors" class="section">
+        <div class="row justify-content-center flex-row-reverse mb-3">
+            <div class="col col-12 col-md-8 col-lg-7">
+                <h2>Colors <sup><a href="#colors" title="Permanent link to this section."
+                                   class="permalink"><span class="permalink-wrapper"><span
+                        class="visually-hidden">Permanent link to this section.</span></span></a></sup></h2>
+
+                <p>
+                    An evolution of the colors introduced by Betty's original theme, <i>Cotton Candy</i>, combined
+                    with a fresh, new, third color to help guide user interactions. All colors come in nine predefined
+                    shades.
+                </p>
+            </div>
+            <div class="col col-12 col-md-4 col-lg-3 ">
+                <ul class="list-group">
+                    <li class="list-group-item bg-primary-500"><code>$raspberry</code></li>
+                    <li class="list-group-item bg-secondary-500"><code>$mint</code></li>
+                    <li class="list-group-item bg-tertiary-500"><code>$orange</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <section class="col col-12 col-md-4 d-flex flex-column">
+                <h3>Raspberry</h3>
+                <p class="flex-grow-1">
+                    The primary color, used to <em>call for attention</em> or <em>indicate actions</em>.
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item bg-primary-100"><code>$raspberry-100</code></li>
+                    <li class="list-group-item bg-primary-200"><code>$raspberry-200</code></li>
+                    <li class="list-group-item bg-primary-300"><code>$raspberry-300</code></li>
+                    <li class="list-group-item bg-primary-400"><code>$raspberry-400</code></li>
+                    <li class="list-group-item bg-primary-500"><code>$raspberry-500</code></li>
+                    <li class="list-group-item bg-primary-600"><code>$raspberry-600</code></li>
+                    <li class="list-group-item bg-primary-700"><code>$raspberry-700</code></li>
+                    <li class="list-group-item bg-primary-800"><code>$raspberry-800</code></li>
+                    <li class="list-group-item bg-primary-900"><code>$raspberry-900</code></li>
+                </ul>
+            </section>
+
+            <section class="col col-12 col-md-4 d-flex flex-column">
+                <h3>Mint</h3>
+                <p class="flex-grow-1">
+                    The secondary color. Among other things, used for <em>navigation</em>.
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item bg-secondary-100"><code>$mint-100</code></li>
+                    <li class="list-group-item bg-secondary-200"><code>$mint-200</code></li>
+                    <li class="list-group-item bg-secondary-300"><code>$mint-300</code></li>
+                    <li class="list-group-item bg-secondary-400"><code>$mint-400</code></li>
+                    <li class="list-group-item bg-secondary-500"><code>$mint-500</code></li>
+                    <li class="list-group-item bg-secondary-600"><code>$mint-600</code></li>
+                    <li class="list-group-item bg-secondary-700"><code>$mint-700</code></li>
+                    <li class="list-group-item bg-secondary-800"><code>$mint-800</code></li>
+                    <li class="list-group-item bg-secondary-900"><code>$mint-900</code></li>
+                </ul>
+            </section>
+
+            <section class="col col-12 col-md-4 d-flex flex-column">
+                <h3>Orange</h3>
+                <p class="flex-grow-1">
+                    The tertiary color. Used when a contrasting color is desired, usually to communicate an interaction
+                    state to the user, such as <em>highlights</em>, or which element on the page is currently
+                    <em>focused</em>.
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item bg-tertiary-100"><code>$orange-100</code></li>
+                    <li class="list-group-item bg-tertiary-200"><code>$orange-200</code></li>
+                    <li class="list-group-item bg-tertiary-300"><code>$orange-300</code></li>
+                    <li class="list-group-item bg-tertiary-400"><code>$orange-400</code></li>
+                    <li class="list-group-item bg-tertiary-500"><code>$orange-500</code></li>
+                    <li class="list-group-item bg-tertiary-600"><code>$orange-600</code></li>
+                    <li class="list-group-item bg-tertiary-700"><code>$orange-700</code></li>
+                    <li class="list-group-item bg-tertiary-800"><code>$orange-800</code></li>
+                    <li class="list-group-item bg-tertiary-900"><code>$orange-900</code></li>
+                </ul>
+            </section>
+
+            <section class="col col-12 col-md-4 d-flex flex-column">
+                <h3>Gray</h3>
+                <ul class="list-group">
+                    <li class="list-group-item bg-gray-100"><code>$gray-100</code></li>
+                    <li class="list-group-item bg-gray-200"><code>$gray-200</code></li>
+                    <li class="list-group-item bg-gray-300"><code>$gray-300</code></li>
+                    <li class="list-group-item bg-gray-400"><code>$gray-400</code></li>
+                    <li class="list-group-item bg-gray-500"><code>$gray-500</code></li>
+                    <li class="list-group-item bg-gray-600"><code>$gray-600</code></li>
+                    <li class="list-group-item bg-gray-700"><code>$gray-700</code></li>
+                    <li class="list-group-item bg-gray-800"><code>$gray-800</code></li>
+                    <li class="list-group-item bg-gray-900"><code>$gray-900</code></li>
+                </ul>
+            </section>
+
+            <section class="col col-12 col-md-4 d-flex flex-column">
+                <h3>Black and white</h3>
+                <ul class="list-group">
+                    <li class="list-group-item bg-black"><code>$black</code></li>
+                    <li class="list-group-item bg-white"><code>$white</code></li>
+                </ul>
+            </section>
+        </div>
+    </section>
+
+    <section id="text" class="section mb-3">
+        <h2>Text <sup><a href="#text" title="Permanent link to this section." class="permalink"><span
+                class="permalink-wrapper"><span
+                class="visually-hidden">Permanent link to this section.</span></span></a></sup></h2>
+
+        <section id="text-paragraph" class="section">
+            <h3>Paragraph <sup><a href="#text-paragraph" title="Permanent link to this section."
+                                  class="permalink"><span class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas risus mi, aliquam eget bibendum id,
+                venenatis et leo. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes,
+                nascetur ridiculus mus. Morbi ultricies dapibus mauris. Ut cursus pharetra nibh, ut venenatis tellus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vestibulum bibendum, ex
+                sed convallis egestas, erat leo venenatis eros, vel elementum mauris tortor a arcu. Aenean bibendum
+                malesuada elit. Pellentesque eleifend, mi sit amet molestie congue, augue metus volutpat lacus, eu
+                posuere mauris turpis sed turpis. Proin pulvinar finibus orci sit amet consectetur. Quisque scelerisque
+                tempus dui ac fermentum.</p>
+            <p>Donec ac nunc ligula. Sed sit amet metus in diam tincidunt condimentum. Phasellus sodales odio nec arcu
+                tempus cursus. Aenean fermentum purus eros, molestie tincidunt magna tincidunt sed. Proin sagittis ut ex
+                in luctus. Suspendisse potenti. Donec sed ullamcorper metus. Morbi sed quam eget tortor commodo
+                congue.</p>
+            <p>Nam quis est est. Ut pellentesque at ligula sit amet venenatis. Phasellus id consectetur tortor. Cras
+                odio erat, tristique dapibus dapibus in, convallis at orci. Sed magna tortor, ultrices nec posuere quis,
+                gravida vel lorem. Nulla tincidunt nec neque non bibendum. Aenean finibus erat sit amet pulvinar
+                posuere. Cras tellus erat, imperdiet nec dolor at, egestas laoreet ante. In eget orci quis ligula porta
+                placerat et at quam. Morbi fringilla condimentum magna, in ornare ligula aliquam quis.</p>
+        </section>
+
+        <section id="text-link" class="section">
+            <h3>Link <sup><a href="#text-link" title="Permanent link to this section." class="permalink"><span
+                    class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+            <p>A link to <a href="#">someplace else</a>.</p>
+            <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate magna sem, eget
+                rutrum eros consequat id. Aenean eu mauris condimentum, fermentum leo at, mollis diam. Pellentesque
+                hendrerit ornare sagittis. Cras imperdiet, nisi ac pulvinar ornare, elit magna semper risus, et posuere
+                mi justo ut sem. Morbi tincidunt odio non risus auctor facilisis in ut dolor. Vestibulum sed sapien
+                interdum, maximus leo quis, lacinia mi. Mauris ipsum orci, commodo quis lorem in, laoreet eleifend ante.
+                Etiam euismod neque sit amet diam pulvinar tincidunt vel vel urna.</a></p>
+        </section>
+
+        <section id="text-reference" class="section">
+            <h3>References <sup><a href="#text-reference" title="Permanent link to this section."
+                                   class="permalink"><span
+                    class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+            <p>Lorem ipsum dolor sit amet <sup><a href="#reference-1" title="View the full reference">[1]</a></sup>.</p>
+            <p>Donec ac nunc ligula <sup><a href="#reference-1" title="View the full reference">[1]</a></sup> <sup><a
+                    href="#reference-2" title="View the full reference">[2]</a></sup>.</p>
+        </section>
+
+        <section id="text-scripts" class="section mb-3">
+            <h3>Scripts <sup><a href="#text-scripts" title="Permanent link to this section."
+                                class="permalink"><span class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+
+            <div class="row g-3">
+                <div class="col col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Arabic</h4>
+                            <p class="card-text" lang="ar" style="direction: rtl;">مرحباً بكم في <span
+                                    lang="en">Betty</span>!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Chinese, traditional (Cantonese)</h4>
+                            <p class="card-text" lang="yue">歡迎嚟到 <span lang="en">Betty</span>!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Hebrew</h4>
+                            <p class="card-text" lang="he" style="direction: rtl;">ברוכים הבאים ל<span
+                                    lang="en">Betty</span>!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Cyrillic (Ukrainian)</h4>
+                            <p class="card-text" lang="uk">Ласкаво просимо до <span lang="en">Betty</span>!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section id="components" class="section mb-5">
+        <h2>Components <sup><a href="#components" title="Permanent link to this section."
+                               class="permalink"><span
+                class="permalink-wrapper"><span
+                class="visually-hidden">Permanent link to this section.</span></span></a></sup></h2>
+
+        <section id="components-cards" class="section row g-4 mb-3">
+            <h3>Cards <sup><a href="#components-cards" title="Permanent link to this section."
+                              class="permalink"><span
+                    class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Light</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card" data-bs-theme="dark">
+                    <div class="card-body">
+                        <h4 class="card-title">Dark</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card" data-bs-theme="light-primary">
+                    <div class="card-body">
+                        <h4 class="card-title">Light Primary</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card" data-bs-theme="dark-primary">
+                    <div class="card-body">
+                        <h4 class="card-title">Dark Primary</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card" data-bs-theme="light-secondary">
+                    <div class="card-body">
+                        <h4 class="card-title">Light Secondary</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-12 col-md-6 col-lg-4">
+                <div class="card" data-bs-theme="dark-secondary">
+                    <div class="card-body">
+                        <h4 class="card-title">Dark Secondary</h4>
+                        <p class="card-text">The quick brown fox jumps over the lazy dog.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="components-forms" class="section mb-3">
+            <h3>Forms <sup><a href="#components-forms" title="Permanent link to this section."
+                              class="permalink"><span
+                    class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h3>
+
+            <div class="row g-4">
+                <section id="components-forms-button" class="section col col-12 col-md-6 col-lg-4">
+                    <h4>Button <sup><a href="#components-forms-button" title="Permanent link to this section."
+                                       class="permalink"><span class="permalink-wrapper"><span
+                            class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                </section>
+
+                <section id="components-forms-checkbox" class="section col col-12 col-md-6 col-lg-4">
+                    <h4>Checkbox <sup><a href="#components-forms-checkbox" title="Permanent link to this section."
+                                         class="permalink"><span class="permalink-wrapper"><span
+                            class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="components-forms-checkbox-input">
+                        <label class="form-check-label" for="components-forms-checkbox-input">Check this out!</label>
+                    </div>
+                </section>
+
+                <section id="components-forms-checkboxes" class="section col col-12 col-md-6 col-lg-4">
+                    <h4>Checkboxes <sup><a href="#components-forms-checkboxes" title="Permanent link to this section."
+                                           class="permalink"><span class="permalink-wrapper"><span
+                            class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+                    <fieldset>
+                        <legend>Check these out!</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="components-forms-checkboxes-input-one">
+                            <label class="form-check-label" for="components-forms-checkboxes-input-one">Check
+                                one...</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="components-forms-checkboxes-input-two" checked>
+                            <label class="form-check-label" for="components-forms-checkboxes-input-two">Check
+                                two...</label>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <section id="components-forms-radio" class="section col col-12 col-md-6 col-lg-4">
+                    <h4>Radio button <sup><a href="#components-forms-radio" title="Permanent link to this section."
+                                             class="permalink"><span class="permalink-wrapper"><span
+                            class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+
+                    <fieldset>
+                        <legend>Check these out!</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                   checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Default checked radio
+                            </label>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <section id="components-forms-text" class="section col col-12 col-md-8 col-lg-6">
+                    <h4>Text input <sup><a href="#components-forms-text" title="Permanent link to this section."
+                                           class="permalink"><span class="permalink-wrapper"><span
+                            class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+                    <div class="form-control-text">
+                        <label for="exampleFormControlInput1" class="form-label">Search keywords</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </section>
+            </div>
+        </section>
+
+
+        <div class="row g-4 mb-3 justify-content-center">
+            <section id="components-accordion" class="section col-12 col-lg-6">
+                <h4>Accordion <sup><a href="#components-accordion" title="Permanent link to this section."
+                                      class="permalink"><span class="permalink-wrapper"><span
+                        class="visually-hidden">Permanent link to this section.</span></span></a></sup></h4>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Accordion Item #1
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas risus mi, aliquam
+                                    eget bibendum id, venenatis et leo. Suspendisse potenti. Orci varius natoque
+                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi ultricies
+                                    dapibus mauris. Ut cursus pharetra nibh, ut venenatis tellus. Lorem ipsum dolor sit
+                                    amet, consectetur adipiscing elit. Aliquam erat volutpat. Vestibulum bibendum, ex
+                                    sed convallis egestas, erat leo venenatis eros, vel elementum mauris tortor a arcu.
+                                    Aenean bibendum malesuada elit. Pellentesque eleifend, mi sit amet molestie congue,
+                                    augue metus volutpat lacus, eu posuere mauris turpis sed turpis. Proin pulvinar
+                                    finibus orci sit amet consectetur. Quisque scelerisque tempus dui ac fermentum.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Accordion Item #2
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Donec ac nunc ligula. Sed sit amet metus in diam tincidunt condimentum. Phasellus
+                                    sodales odio nec arcu tempus cursus. Aenean fermentum purus eros, molestie tincidunt
+                                    magna tincidunt sed. Proin sagittis ut ex in luctus. Suspendisse potenti. Donec sed
+                                    ullamcorper metus. Morbi sed quam eget tortor commodo congue.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Accordion Item #3
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Nam quis est est. Ut pellentesque at ligula sit amet venenatis. Phasellus id
+                                    consectetur tortor. Cras odio erat, tristique dapibus dapibus in, convallis at orci.
+                                    Sed magna tortor, ultrices nec posuere quis, gravida vel lorem. Nulla tincidunt nec
+                                    neque non bibendum. Aenean finibus erat sit amet pulvinar posuere. Cras tellus erat,
+                                    imperdiet nec dolor at, egestas laoreet ante. In eget orci quis ligula porta
+                                    placerat et at quam. Morbi fringilla condimentum magna, in ornare ligula aliquam
+                                    quis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section id="external-links" class="section mt-5">
+        <h2>External links <sup><a href="#external-links" title="Permanent link to this section."
+                                   class="permalink"><span class="permalink-wrapper"><span
+                class="visually-hidden">Permanent link to this section.</span></span></a></sup></h2>
+        <ul>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/Amsterdam" hreflang="en" rel="external" type="text/html">Amsterdam</a>
+                <p class="small">Read more on Wikipedia.</p>
+            </li>
+        </ul>
+    </section>
+</div>
+<div class="mt-5 py-5" data-bs-theme="light-secondary">
+    <div class="container">
+        <section id="references" class="section">
+            <h2>References <sup><a href="#references" title="Permanent link to this section." class="permalink"><span
+                    class="permalink-wrapper"><span
+                    class="visually-hidden">Permanent link to this section.</span></span></a></sup></h2>
+            <ol>
+                <li id="reference-1" class="reference">
+                    <span>
+                        "<a href="#" class="fst-italic">Personal accounts</a>".
+                        <a href="#">First-person account</a>.
+                    </span>
+                </li>
+                <li id="reference-2" class="reference">
+                    <span>
+                        Gemeente Amsterdam.
+                        "<a href="#" class="fst-italic">Bevolkingsregister Amsterdam</a>".
+                        Amsterdam,
+                        <span class="private"
+                              title="This citation's details are unavailable to protect people's privacy.">private</span>.
+                    </span>
+                </li>
+                <li id="reference-3" class="reference">
+                    <span>
+                        Gemeente Ilpendam.
+                        "<a href="#" class="fst-italic">Bevolkingsregister Ilpendam</a>".
+                        Ilpendam,
+                        <a href="#">Civil registry, Ilpendam, 1924-1939, 43a-43b, sheet 566</a>.
+                    </span>
+                </li>
+                <li id="reference-4" class="reference">
+                    <span>
+                        <span class="private"
+                              title="This citation's details are unavailable to protect people's privacy.">private</span>.
+                    </span>
+                </li>
+                <li id="reference-5" class="reference">
+                    <span>
+                        "<a href="#" class="fst-italic">Personal accounts</a>".
+                        <a href="#">Second-person account</a>.
+                    </span>
+                </li>
+                <li id="reference-6" class="reference">
+                    <span>
+                        <span class="private"
+                              title="This citation's details are unavailable to protect people's privacy.">private</span>.
+                    </span>
+                </li>
+            </ol>
+        </section>
+    </div>
+</div>
+<div class="py-5" data-bs-theme="dark-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12 col-lg-6 p-3">
+                <p>
+                    © Copyright Bart Feenstra, unless otherwise credited
+                </p>
+                <p>
+                    All rights reserved
+                </p>
+                <p>
+                    Contact me at <a href="#">bart@bartfeenstra.com</a>
+                </p>
+            </div>
+            <div class="col col-12 col-lg-6 p-3">
+                <p>
+                    Last modified on
+                    <time datetime="2024-11-02">November 2, 2024</time>
+                </p>
+                <p>
+                    <a href="#">API documentation</a>
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="mt-3 pt-3 px-2 border-top border-white">
+                <small>
+                    A family history as told by <a href="#">Betty</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
