@@ -24,16 +24,17 @@ from betty.ancestry.presence import Presence
 from betty.ancestry.presence_role.presence_roles import Subject
 from betty.ancestry.source import Source
 from betty.date import Date, DateRange
-from betty.fs import DATA_DIRECTORY_PATH
+from betty.fs import DATA_DIRECTORY_PATH, ASSETS_DIRECTORY_PATH
 from betty.license.licenses import spdx_license_id_to_license_id
+from betty.media_type import MediaType
 from betty.media_type.media_types import SVG
+from betty.model.config import EntityReference
 from betty.plugin.config import PluginInstanceConfiguration
 from betty.project import Project
 from betty.project.config import (
     LocaleConfiguration,
     ProjectConfiguration,
 )
-from betty.model.config import EntityReference
 from betty.project.extension.cotton_candy import CottonCandy
 from betty.project.extension.cotton_candy.config import CottonCandyConfiguration
 from betty.project.extension.demo.copyright_notice import Streetmix
@@ -72,6 +73,7 @@ async def create_project(app: App, project_directory_path: Path) -> Project:
                     featured_entities=[
                         EntityReference(Place, "betty-demo-amsterdam"),
                         EntityReference(Person, "betty-demo-liberta-lankester"),
+                        EntityReference(Person, "betty-demo-johan-de-boer"),
                         EntityReference(Place, "betty-demo-netherlands"),
                     ],
                 ),
@@ -124,6 +126,10 @@ async def load_ancestry(project: Project) -> None:
             streetmix_files = fallback_streetmix_files
         streetmix_file = choice(streetmix_files)
         ancestry.add(FileReference(person, streetmix_file))
+
+    # @todo Remove this
+    debug_file_path = ASSETS_DIRECTORY_PATH / "public" / "static" / "betty-512x512.png"
+    debug_media_type = MediaType("image/png")
 
     netherlands = Place(
         id="betty-demo-netherlands",
@@ -417,6 +423,17 @@ Did you know that Liberta "Betty" Lankester is Betty's namesake?
         parents=[dirk_jacobus_lankester, jannigje_palsen],
         notes=[liberta_lankester_note],
     )
+    # @todo Remove this
+    ancestry.add(
+        FileReference(
+            liberta_lankester,
+            File(
+                debug_file_path,
+                id="debug-betty-demo-north-holland",
+                media_type=debug_media_type,
+            ),
+        )
+    )
     _streetmix_image(liberta_lankester)
     ancestry.add(
         PersonName(
@@ -456,6 +473,17 @@ Did you know that Liberta "Betty" Lankester is Betty's namesake?
     ancestry.add(death_of_johan_de_boer)
 
     johan_de_boer = Person(id="betty-demo-johan-de-boer", gender=Male())
+    # @todo Remove this
+    ancestry.add(
+        FileReference(
+            johan_de_boer,
+            File(
+                debug_file_path,
+                id="debug-betty-demo-north-holland",
+                media_type=debug_media_type,
+            ),
+        )
+    )
     _streetmix_image(johan_de_boer)
     ancestry.add(
         PersonName(
