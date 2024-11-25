@@ -13,42 +13,45 @@
   padding-right: 5px;
   text-wrap: nowrap;
 
-  &:focus {
-    --betty-site-brand-bg-color: #{$focus};
-
-    outline: none;
-
-    .header-site-title {
-      @include text-focus;
-
-      background-color: var(--betty-site-brand-bg-color);
-    }
-  }
-
   .header-site-title {
+    background-color: var(--betty-site-brand-bg-color);
     display: inline-block;
     height: 1.5em;
     overflow: hidden;
 
-  // @todo RTL support
-    padding-left: 5px;
+    // @todo RTL support
+    margin-left: 5px;
     width: calc(100% - 1.5em);
+  }
 
-    .header-site-title-text {
-      // @todo RTL support
-      background: linear-gradient(270deg, var(--betty-site-brand-bg-color), var(--betty-site-brand-color) 0.5lh);
-      background-clip: text;
-      color: transparent !important;
-      display: inline-block;
-      overflow: hidden;
-      width: 100%;
-    }
+  .header-site-title-text {
+    // @todo RTL support
+    background: linear-gradient(270deg, var(--betty-site-brand-bg-color), var(--betty-site-brand-color) 0.5lh);
+    background-clip: text;
+    color: transparent !important;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
   }
 
   img {
     height: 1.5em;
     vertical-align: top;
     width: 1.5em;
+  }
+
+  &:focus {
+    --betty-site-brand-bg-color: #{$focus};
+
+    outline: none;
+
+    .header-site-title-text {
+      // @todo Finish these focus states
+      box-shadow: 0 2px $focus-contrast;
+      color: $focus-contrast;
+      text-decoration-color: $focus-contrast;
+      font-size: 0.8em;
+    }
   }
 }
 

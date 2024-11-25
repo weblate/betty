@@ -1,16 +1,16 @@
 @mixin text-focus {
     background-color: $focus;
-    box-shadow: 0 0 $focus, 0 2px $focus-contrast;
+    box-shadow: 0 2px $focus-contrast;
     color: $focus-contrast;
     text-decoration-color: $focus-contrast;
     outline: none;
 }
 
-a {
+a:not(.no-link) {
   box-shadow: 0 2px var(--betty-link-underline-color);
   text-decoration: none;
 
-  &:focus:not(.no-text-focus) {
+  &:focus {
     @include text-focus;
   }
 
