@@ -1,0 +1,82 @@
+
+// @todo - Rename this so it's specific to vectors (SVGs?)
+// @todo - Also add similar classes for bitmaps.
+// @todo - What about adding classes to constrain widths OR heights? Then images could scale in the other dimension based
+// @todo    on their source files
+// @todo
+// @todo
+.image-focus {
+  // @todo Confirm we use all of these!
+  --betty-image-focus-height: calc(var(--betty-image-focus-bottom) - var(--betty-image-focus-top));
+  --betty-image-focus-width: calc(var(--betty-image-focus-right) - var(--betty-image-focus-left));
+  // @todo Check this again
+  --betty-image-focus-ratio: min(calc(100 / var(--betty-image-focus-height)), calc(100 / var(--betty-image-focus-width)));
+  --betty-image-focus-center-x: calc(var(--betty-image-focus-width) / 2 + var(--betty-image-focus-left));
+  --betty-image-focus-center-y: calc(var(--betty-image-focus-height) / 2 + var(--betty-image-focus-top));
+
+  container-type: size;
+  display: inline-block;
+  // @todo reenable this
+  //overflow: hidden;
+  position: relative;
+
+  // @todo remove this
+  border: 5px solid red;
+
+  &::before {
+    aspect-ratio: 1;
+    // @todo remove this
+    background-color: blue;
+    background-image: var(--betty-image-focus-url);
+    background-position: center;
+    background-repeat: no-repeat;
+    //background-size: calc(10% * var(--betty-image-focus-ratio)) calc(10% * var(--betty-image-focus-ratio));
+    background-size: 100%;
+    border: 3px solid green;
+    content: "";
+    display: block;
+    position: absolute;
+    // @todo Redo this and the aspect ratio. 
+    width: 100%;
+    z-index: -999;
+
+    // @todo
+    transform: translate(-50%, -50%);
+    //top: calc(1% * (100 - var(--betty-image-focus-center-y)));
+    //left: calc(1% * (100 - var(--betty-image-focus-center-x)));
+  }
+
+  img {
+    object-position: 999999999px 999999999px;
+  }
+}
+
+@mixin image-focus-ratio-portrait {
+
+}
+
+@mixin image-focus-ratio-landscape {
+
+}
+
+// @todo What we really need to know is the ratio of the focus box to the <img> box
+// @todo - We can calculate the focus box ratio in Python and render it in HTML/CSS
+// @todo - How would we get the <img> ratio?
+// @todo - And when we have both, how do we compare them?
+// @todo
+// @todo
+// @todo
+// @todo
+@container (aspect-ratio >= var(--betty-image-focus-ratio)) {
+  .image-focus {
+    // @todo remove this
+    border-color: green;
+  }
+}
+
+@container (aspect-ratio < var(--betty-image-focus-ratio)) {
+  .image-focus {
+    // @todo remove this
+    border-color: purple;
+  }
+}
