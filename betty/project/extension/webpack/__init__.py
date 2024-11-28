@@ -72,6 +72,7 @@ async def _prebuild_webpack_assets() -> None:
                 await webpack.prebuild(job_context=job_context)
 
 
+@internal
 class WebpackEntryPointProvider(Extension):
     """
     An extension that provides Webpack entry points.
@@ -97,6 +98,7 @@ class WebpackEntryPointProvider(Extension):
         pass
 
 
+@internal
 class PrebuiltAssetsRequirement(Requirement):
     """
     Check if prebuilt assets are available.

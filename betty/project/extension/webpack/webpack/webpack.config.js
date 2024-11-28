@@ -67,6 +67,24 @@ class EntryScriptCollector {
   }
 }
 
+/**
+ * Call Python code during the `dev-webpack-serve` command.
+ */
+class DevWebpackServePythonIntegrator {
+  constructor(preBuild) {
+    this.preBuild = preBuild
+  }
+
+  apply (compiler) {
+    compiler.hooks.watchRun.tapAsync('DevWebpackServePythonIntegrator', () => {
+      // @todo Finish this.
+      console.log(this.preBuild)
+      console.log(this.preBuild)
+      console.log(this.preBuild)
+    })
+  }
+}
+
 const webpackConfiguration = {
   mode: configuration.debug ? 'development' : 'production',
   devtool: configuration.debug ? 'eval-source-map' : false,
@@ -74,6 +92,11 @@ const webpackConfiguration = {
   output: {
     path: path.resolve(__dirname, configuration.buildDirectoryPath),
     filename: 'js/[name].js'
+  },
+  devServer: {
+      watchFiles: {
+          paths: configuration.watchFiles,
+      }
   },
   optimization: {
     concatenateModules: true,
@@ -110,6 +133,7 @@ const webpackConfiguration = {
   plugins: [
     new CleanWebpackPlugin(),
     new EntryScriptCollector(),
+    new DevWebpackServePythonIntegrator(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     })

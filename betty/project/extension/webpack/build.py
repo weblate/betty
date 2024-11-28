@@ -4,6 +4,7 @@ Perform Webpack builds.
 
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 from asyncio import to_thread, gather
 from json import dumps, loads
 from logging import getLogger
@@ -15,9 +16,11 @@ import aiofiles
 from aiofiles.os import makedirs
 
 from betty import _npm
+from betty.app import App
 from betty.fs import ROOT_DIRECTORY_PATH
 from betty.hashid import hashid, hashid_sequence, hashid_file_content
 from betty.os import copy_tree
+from betty.project import Project
 
 if TYPE_CHECKING:
     from betty.project.extension import Extension
@@ -26,7 +29,6 @@ if TYPE_CHECKING:
     from betty.render import Renderer
     from collections.abc import Sequence, MutableMapping
     from betty.project.extension.webpack import WebpackEntryPointProvider
-
 
 _NPM_PROJECT_DIRECTORIES_PATH = Path(__file__).parent / "webpack"
 
@@ -162,7 +164,11 @@ class Builder:
         )
 
     async def _prepare_npm_project_directory(
-        self, npm_project_directory_path: Path, webpack_build_directory_path: Path
+        self,
+        npm_project_directory_path: Path,
+        webpack_build_directory_path: Path,
+        *,
+        integrator: BuildWatchIntegrator | None,
     ) -> None:
         npm_project_package_json_dependencies: MutableMapping[str, str] = {}
         webpack_entry: MutableMapping[str, str] = {}
@@ -188,6 +194,7 @@ class Builder:
                 ),
                 "debug": self._debug,
                 "entry": webpack_entry,
+                "watchFiles": integrator.watch_files() if integrator else [],
             }
         )
         async with aiofiles.open(
@@ -213,13 +220,43 @@ class Builder:
         await _npm.npm(("install", "--production"), cwd=npm_project_directory_path)
 
     async def _webpack_build(
-        self, npm_project_directory_path: Path, webpack_build_directory_path: Path
+        self,
+        npm_project_directory_path: Path,
+        webpack_build_directory_path: Path,
+        *,
+        integrator: BuildWatchIntegrator | None,
     ) -> None:
-        await _npm.npm(("run", "webpack"), cwd=npm_project_directory_path)
-
         # Ensure there is always a vendor.css. This makes for easy and unconditional importing.
         await makedirs(webpack_build_directory_path / "css", exist_ok=True)
         await to_thread((webpack_build_directory_path / "css" / "vendor.css").touch)
+
+        script = "build-watch" if integrator else "build"
+        await _npm.npm(("run", script), cwd=npm_project_directory_path)
+
+    async def _prepare_build(
+        self, *, integrator: BuildWatchIntegrator | None
+    ) -> tuple[Path, Path]:
+        # @todo We should probably differentiate between the 'input' and 'build ' directories here.
+        # @todo
+        # @todo
+        # @todo
+        npm_project_directory_path = await _npm_project_directory_path(
+            self._working_directory_path, self._entry_point_providers
+        )
+        webpack_build_directory_path = _webpack_build_directory_path(
+            npm_project_directory_path, self._entry_point_providers, self._debug
+        )
+        if webpack_build_directory_path.exists():
+            return npm_project_directory_path, webpack_build_directory_path
+        npm_install_required = not npm_project_directory_path.exists()
+        await self._prepare_npm_project_directory(
+            npm_project_directory_path,
+            webpack_build_directory_path,
+            integrator=integrator,
+        )
+        if npm_install_required:
+            await self._npm_install(npm_project_directory_path)
+        return npm_project_directory_path, webpack_build_directory_path
 
     async def build(self) -> Path:
         """
@@ -228,24 +265,36 @@ class Builder:
         :return: The path to the directory from which the assets can be copied to their
             final destination.
         """
-        npm_project_directory_path = await _npm_project_directory_path(
-            self._working_directory_path, self._entry_point_providers
-        )
-        webpack_build_directory_path = _webpack_build_directory_path(
-            npm_project_directory_path, self._entry_point_providers, self._debug
-        )
-        if webpack_build_directory_path.exists():
-            return webpack_build_directory_path
-        npm_install_required = not npm_project_directory_path.exists()
-        await self._prepare_npm_project_directory(
-            npm_project_directory_path, webpack_build_directory_path
-        )
-        if npm_install_required:
-            await self._npm_install(npm_project_directory_path)
+        (
+            npm_project_directory_path,
+            webpack_build_directory_path,
+        ) = await self._prepare_build(integrator=None)
         await self._webpack_build(
-            npm_project_directory_path, webpack_build_directory_path
+            npm_project_directory_path, webpack_build_directory_path, integrator=None
         )
         getLogger(__name__).info(
             self._localizer._("Built the Webpack front-end assets.")
         )
         return webpack_build_directory_path
+
+    async def build_watch(self, integrator: BuildWatchIntegrator) -> None:
+        """
+        Build the Webpack assets continuously.
+        """
+        await self._webpack_build(
+            *await self._prepare_build(integrator=integrator), integrator=integrator
+        )
+
+
+# @todo Rename this
+class BuildWatchIntegrator(ABC):
+    def __init__(self, app: App):
+        self._app = app
+
+    @abstractmethod
+    def watch_files(self) -> set[Path]:
+        pass
+
+    @abstractmethod
+    async def setup(self, project: Project) -> None:
+        pass
