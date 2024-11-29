@@ -16,13 +16,13 @@ import aiofiles
 from aiofiles.os import makedirs
 
 from betty import _npm
-from betty.app import App
 from betty.fs import ROOT_DIRECTORY_PATH
 from betty.hashid import hashid, hashid_sequence, hashid_file_content
 from betty.os import copy_tree
-from betty.project import Project
 
 if TYPE_CHECKING:
+    from betty.app import App
+    from betty.project import Project
     from betty.project.extension import Extension
     from betty.job import Context
     from betty.locale.localizer import Localizer

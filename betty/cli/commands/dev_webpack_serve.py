@@ -1,16 +1,14 @@
 from __future__ import annotations  # noqa D100
 
-import logging
-from pathlib import Path
-from tempfile import TemporaryDirectory
 from typing import TYPE_CHECKING, final, Self
 
 import asyncclick as click
 from typing_extensions import override
 
 from betty.app.factory import AppDependentFactory
-from betty.cli.commands import command, Command, parameter_callback
+from betty.cli.commands import command, Command
 from betty.importlib import import_any
+from betty.job import Context
 from betty.locale.localizable import _
 from betty.plugin import ShorthandPluginBase
 from betty.project import Project
@@ -42,13 +40,17 @@ class DevWebpackServe(ShorthandPluginBase, AppDependentFactory, Command):
         localizer = await self._app.localizer
         description = self.plugin_description()
 
-        def _integrator_callback(_: click.Context, __: click.Parameter, name: str) -> BuildWatchIntegrator:
+        def _integrator_callback(
+            _: click.Context, __: click.Parameter, name: str
+        ) -> BuildWatchIntegrator:
             try:
                 integrator = import_any(name)
             except ImportError as error:
                 raise click.BadParameter(str(error)) from error
             if not issubclass(integrator, BuildWatchIntegrator):
-                raise click.BadParameter(f"{integrator} must extend {BuildWatchIntegrator}, but does not.")
+                raise click.BadParameter(
+                    f"{integrator} must extend {BuildWatchIntegrator}, but does not."
+                )
             return integrator(self._app)
 
         @command(
@@ -58,33 +60,29 @@ class DevWebpackServe(ShorthandPluginBase, AppDependentFactory, Command):
             if description
             else self.plugin_label().localize(localizer),
         )
-        @click.argument(
-            "integrator",
-            required=True,
-            callback=_integrator_callback
-        )
+        @click.argument("integrator", required=True, callback=_integrator_callback)
         async def dev_webpack_serve(integrator: BuildWatchIntegrator) -> None:
-            # @todo Do we use these directories?
-            with (
-                TemporaryDirectory() as project_directory_path_str,
-                TemporaryDirectory(),
-            ):
-                # @todo Ensure that the Webpack build copies the files to the desired destination itself.
-                # @todo We currently do this in Python, which is fine because we can reliably do this after the
-                # @todo single Webpack build. With live builds, however, the Webpack process has control and there
-                # @todo is no Python step after a rebuild.
-                # @todo ACTUALLY!!!! The reason we do it in Python is that the Webpack builds are cacheable, meaning
-                # @todo that during normal operations Webpack isn't invoked at all, but instead Python just copies the
-                # @todo necessary (previously built) files from the cache to the project output directory.
-                # @todo
-                project_directory_path = Path(project_directory_path_str)
-                async with Project.new() as project:
-                    await integrator.setup(project)
-                    async with project:
-                        builder = Builder(
-                            project_directory_path, [], False, await self._app.renderer
-                        )
-                        await builder.build_watch(integrator)
-                        raise NotImplementedError
+            job_context = Context()
+            # @todo Ensure that the Webpack build copies the files to the desired destination itself.
+            # @todo We currently do this in Python, which is fine because we can reliably do this after the
+            # @todo single Webpack build. With live builds, however, the Webpack process has control and there
+            # @todo is no Python step after a rebuild.
+            # @todo ACTUALLY!!!! The reason we do it in Python is that the Webpack builds are cacheable, meaning
+            # @todo that during normal operations Webpack isn't invoked at all, but instead Python just copies the
+            # @todo necessary (previously built) files from the cache to the project output directory.
+            # @todo
+            async with Project.new_temporary(self._app) as project:
+                await integrator.setup(project)
+                async with project:
+                    builder = Builder(
+                        project.configuration.project_directory_path,
+                        [],
+                        False,
+                        project.renderer,
+                        job_context=job_context,
+                        localizer=localizer,
+                    )
+                    await builder.build_watch(integrator)
+                    raise NotImplementedError
 
         return dev_webpack_serve
