@@ -66,7 +66,7 @@ _RESULTS_CONTAINER_TEMPLATE = """
 """
 
 
-async def _generate_favicon(event: GenerateSiteEvent) -> None:
+async def _generate_logo(event: GenerateSiteEvent) -> None:
     await link_or_copy(
         event.project.logo, event.project.configuration.www_directory_path / "logo.png"
     )
@@ -163,9 +163,7 @@ class CottonCandy(
 
     @override
     def register_event_handlers(self, registry: EventHandlerRegistry) -> None:
-        registry.add_handler(
-            GenerateSiteEvent, _generate_favicon, _generate_search_index
-        )
+        registry.add_handler(GenerateSiteEvent, _generate_logo, _generate_search_index)
 
     @override
     @classmethod
